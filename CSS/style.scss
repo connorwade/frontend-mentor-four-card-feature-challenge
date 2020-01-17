@@ -1,0 +1,181 @@
+//media query vars
+$desktop: 800px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+      @content;
+    }
+  }
+
+//color vars
+$red: hsl(0, 78%, 62%);
+$cyan: hsl(180, 62%, 55%);
+$orange: hsl(34, 97%, 64%);
+$blue: hsl(212, 86%, 64%);
+
+$darkBlue: hsl(234, 12%, 34%);
+$grayish: hsl(229, 6%, 66%);
+$lightGray: hsl(0, 0%, 98%);
+
+//font vars
+$fontSize: 15px;
+$family: 'Poppins', sans-serif;
+
+//icon mixin
+@mixin icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    height: 100%;
+}
+
+body{
+    font-size: $fontSize;
+    font-family: $family;
+    color: $darkBlue;
+    padding: 12px;
+
+    @include desktop(){
+        padding: 48px 64px;
+    }
+}
+
+header{
+    margin: 0 auto;
+    text-align: center;
+    height: 25%;
+    @include desktop(){
+        width: 50%;
+        min-width: 31rem;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 12px;
+
+    .subhead{
+        color: $grayish;
+        font-weight: 200;
+    }
+    .head{
+        font-weight: 600;
+        letter-spacing: .8px;
+    }
+    h1{
+        font-size: 1.7rem;
+        @include desktop(){
+            font-size: 2rem;
+        }
+    }
+    p{
+        margin-top: 12px;
+        color: $grayish;
+        font-weight: 400;
+        font-size: 1.1rem;
+    }
+    
+}
+
+.cardholder{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @include desktop(){
+        margin: 0 auto;
+        height: 75%;
+        max-width: 1400px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            ". team ."
+            "super team calc"
+            "super karma calc"
+            ". karma .";
+        justify-content: space-between;
+
+    }
+}
+
+.card{
+    margin-top: 12px;
+    @include desktop(){
+        margin-top: 0;
+        margin: 18px;
+    }
+    padding: 12px;
+    position: relative;
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px $grayish;
+    h2{
+        font-weight: 600;
+    }
+    p{
+        color: $grayish;
+        font-size: 1rem;
+        font-weight: 200;
+    }
+    div{
+        height: 30%;
+        width: 20%;
+        position: absolute;
+        margin-bottom: 24px;
+        margin-right: 24px;
+        bottom: 0%;
+        right: 0%;
+        @include icon();
+    }
+    .supervisorIcon{
+        background-image: url('/images/icon-supervisor.svg');
+    }
+    .teamIcon{
+        background-image: url('/images/icon-team-builder.svg');
+    }
+    .karmaIcon{
+        background-image: url('/images/icon-karma.svg');
+    }
+    .calcIcon{
+        background-image: url('/images/icon-calculator.svg');
+    }
+}
+
+.supervisor{
+    border-top: 5px solid $cyan;
+    @include desktop(){
+        grid-area: super;
+    }
+}
+.team{
+    border-top: 5px solid $red;
+    @include desktop(){
+        grid-area: team;
+    }
+}
+.karma{
+    border-top: 5px solid $orange;
+    @include desktop(){
+        grid-area: karma;
+    }
+}
+.calc{
+    border-top: 5px solid $blue;
+    @include desktop(){
+        grid-area: calc;
+    }
+}
+
+footer{
+    margin-top: 12px;
+}
